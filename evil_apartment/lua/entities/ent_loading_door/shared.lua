@@ -51,12 +51,12 @@ function ENT:SetLoadingScreen(screen)
 end
 
 function ENT:DoTransition(ply)
-	if !ValidEntity(ply) then return end
+	if !IsValid(ply) then return end
 
 	ply:Freeze(true)
-	
+
 	if SERVER then
-		umsg.Start("re_startloading", ply) 
+		umsg.Start("re_startloading", ply)
 			umsg.Short(self:EntIndex())
 		umsg.End()
 	else
@@ -64,34 +64,33 @@ function ENT:DoTransition(ply)
 		if self:GetOpenDoorSound() != "" then
 			surface.PlaySound(self:GetOpenDoorSound())
 		end
-		
+
 		self:SetTransition(true)
 	end
-	
-	timer.Simple(((ENABLE_FAKE_LOADING:GetBool() && 3) || 1.5), function(ply, door)
-			if ValidEntity(ply) then
+end
+	  --[[ function ENT:DoTeleport(ply, door)
+			if IsValid(ply) then
 
-				if SERVER && ValidEntity(door) then
-				
+				if SERVER && IsValid(door) then
+
 					// If the spawn flag "Teleport player" is 1
 					if door:HasSpawnFlags(2) then
 						local teleEnt = door:GetTeleportEntity()
-						
-						if ValidEntity(teleEnt) then
-							ply:SetPos(teleEnt:GetPos())							
+
+						if IsValid(teleEnt) then
+							ply:SetPos(teleEnt:GetPos())
 							ply:SetEyeAngles(Angle(0, teleEnt:GetAngles().y, 0))
 						end
 					end
-				
+
 				else
 					if door:GetCloseDoorSound() != "" then
 						surface.PlaySound(door:GetCloseDoorSound())
 					end
-					
+
 					door:SetTransition(false)
 				end
-				
+
 				ply:Freeze(false)
 			end
-		end, ply, self)
-end
+		end--, ply, self)]]

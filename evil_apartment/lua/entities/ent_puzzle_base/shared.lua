@@ -24,50 +24,50 @@ end
 
 function ENT:SetUser(user)
 	local oldUser = self:GetUserID()
-	
+
 	if oldUser == user:EntIndex() then return end
-	
+
 	oldUser = ents.GetByIndex(oldUser)
-	
-	local isValid = user && ValidEntity(user)
-	
+
+	local IsValid = user && IsValid(user)
+
 	if SERVER then
-		if ValidEntity(oldUser) then
+		if IsValid(oldUser) then
 			oldUser:SetScriptedVehicle(NULL)
-			
+
 			oldUser:UnSpectate()
 			oldUser:Spawn()
-			
+
 			if oldUser.LastKnownPos then
 				oldUser:SetPos(oldUser.LastKnownPos.pos)
 				oldUser:SetEyeAngles(oldUser.LastKnownPos.ang)
-				
+
 				oldUser.LastKnownPos = nil
 			end
-			
+
 			if oldUser.SetDrawCrosshair then
 				oldUser:SetDrawCrosshair(true)
 			end
 		end
 
-		if isValid && user:IsPlayer() then			
+		if IsValid && user:IsPlayer() then
 			user:SetScriptedVehicle(self:GetCameraEntity())
-			
+
 			user.LastKnownPos = {pos = user:GetPos(), ang = user:EyeAngles()}
-			
+
 			user:StripWeapons()
-			
+
 			user:Spectate(OBS_MODE_FIXED)
-			
+
 			if user.SetDrawCrosshair then
 				user:SetDrawCrosshair(false)
 			end
 		end
 	end
-	
+
 	self:SetDTInt(0, ((isValid && user:EntIndex()) || 0))
 end
 
-function ENT:GetUserID()	
+function ENT:GetUserID()
 	return self:GetDTInt(0)
 end

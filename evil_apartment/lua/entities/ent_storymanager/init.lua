@@ -3,7 +3,7 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 local function lockPlayer(ply, isLocked)
-	if isLocked then 
+	if isLocked then
 		ply:Lock()
 	else
 		ply:UnLock()
@@ -13,19 +13,19 @@ end
 local function sendStory(ply, isOn, story)
 	umsg.Start("evil_story", ply)
 		umsg.Bool(isOn)
-		
-		if ValidEntity(ply) then
+
+		if IsValid(ply) then
 			lockPlayer(ply, isOn)
 		else
 			// Send to all players
 			for _, v in pairs(player.GetAll()) do
-				if ValidEntity(v) then
+				if IsValid(v) then
 					lockPlayer(v, isOn)
 				end
 			end
 		end
-		
-		if isOn then		
+
+		if isOn then
 			umsg.Short(story)
 		end
 	umsg.End()
@@ -33,14 +33,14 @@ end
 
 function ENT:AcceptInput(name, activator, caller, data)
 	local temp = string.lower(name)
-	
+
     if temp == "startstory" then
 		temp = tonumber(data)
-		
+
 		if temp then
 			local ply
-			
-			if ValidEntity(activator) && activator:IsPlayer() then ply = activator end
+
+			if IsValid(activator) && activator:IsPlayer() then ply = activator end
 
 			sendStory(ply, true, temp)
 		end
