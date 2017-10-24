@@ -43,7 +43,7 @@ function ENT:Think()
 		m_PaperInterface:ClearLines()
 
 		RunConsoleCommand("evil_typerleave")
-
+		
 		return
 	end
 
@@ -126,17 +126,18 @@ function ENT:Think()
 	end
 end
 
+/*If this is set to true, the typewriter interface will be enabled*/
 usermessage.Hook("eviltyper_use", function(um)
 		if ValidPanel(m_PaperInterface) then
 			m_PaperInterface:SetVisible(um:ReadBool())
 		end
-
 		// fix bug where the type writer would register use button
 		local ent = um:ReadEntity()
 		if IsValid( ent ) then ent.NextTypeCheck = CurTime() + .5 end
 	end)
 
 hook.Remove("OnSpawnMenuOpen", "DontOpen", function()
+		print("hook.Remove OnSpawnMenuOpen DontOpen called")
 		local veh = LocalPlayer():GetScriptedVehicle()
 
 		if IsValid(veh) then

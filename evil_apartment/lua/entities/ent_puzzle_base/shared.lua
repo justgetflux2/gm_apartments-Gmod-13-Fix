@@ -23,17 +23,24 @@ function ENT:IsDisabled()
 end
 
 function ENT:SetUser(user)
+  print("SetUser called")
+  print(self)
+  print(user)
 	local oldUser = self:GetUserID()
-
+  print(oldUser)
+  print(user:EntIndex())
 	if oldUser == user:EntIndex() then return end
 
 	oldUser = ents.GetByIndex(oldUser)
+  print(oldUser)
 
-	local IsValid = user && IsValid(user)
+	local isCorrect = user && true
 
 	if SERVER then
+    print("SERVER is true")
 		if IsValid(oldUser) then
-			oldUser:SetScriptedVehicle(NULL)
+      print("olduer is valid")
+			oldUser:ExitVehicle()
 
 			oldUser:UnSpectate()
 			oldUser:Spawn()
@@ -50,9 +57,10 @@ function ENT:SetUser(user)
 			end
 		end
 
-		if IsValid && user:IsPlayer() then
-			user:SetScriptedVehicle(self:GetCameraEntity())
-
+		if isCorrect && user:IsPlayer() then
+			print("If it's correct and user isPlayer")
+			//SetScriptedVehicle changed to EnterVehicle
+			user:EnterVehicle(self:GetCameraEntity())
 			user.LastKnownPos = {pos = user:GetPos(), ang = user:EyeAngles()}
 
 			user:StripWeapons()
@@ -65,7 +73,7 @@ function ENT:SetUser(user)
 		end
 	end
 
-	self:SetDTInt(0, ((isValid && user:EntIndex()) || 0))
+	self:SetDTInt(0, ((isCorrect && user:EntIndex()) || 0))
 end
 
 function ENT:GetUserID()
