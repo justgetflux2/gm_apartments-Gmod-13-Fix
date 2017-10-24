@@ -1,0 +1,9 @@
+"UnlitGeneric"
+{
+	"$basetexture" "sunabouzu/mouse_left_prompt"
+	"$translucent" 1
+	"$nolod" 1
+	"$vertexalpha" 1
+	"$vertexcolor" 1
+	"$ignorez" "1"
+}

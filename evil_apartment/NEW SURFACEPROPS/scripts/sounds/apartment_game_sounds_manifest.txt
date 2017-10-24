@@ -1,0 +1,6 @@
+game_sounds_manifest //I copied over the entire manifest because ommiting anything might break all sounds.
+{
+
+	"precache_file"		"scripts/game_sounds_physics_new.txt"
+	"precache_file"		"scripts/surfaceproperties_apartment.txt"
+}

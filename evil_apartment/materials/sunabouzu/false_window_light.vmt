@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+	"$basetexture" "sunabouzu/false_window_light"
+	"$surfaceprop" "Glass"
+	"%keywords" "suna"
+	"$translucent" 1
+}

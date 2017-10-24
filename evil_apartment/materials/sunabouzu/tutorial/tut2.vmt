@@ -1,0 +1,10 @@
+"UnlitGeneric"
+{
+	"$basetexture" "sunabouzu/tutorial/tut2"
+	"$surfaceprop" "Glass"
+	"%keywords" "suna tutorial"
+	"UnlitGeneric_HDR_DX9"
+	{
+		"$color" "[0.5 0.5 0.5]" //fixes the HDR issue
+	}
+}

@@ -1,0 +1,11 @@
+"UnlitGeneric"
+{
+	"$basetexture" "sunabouzu/afraid"
+	"$surfaceprop" "Tile"
+	"$nodecal" 1
+	"%keywords" "suna"
+	"UnlitGeneric_HDR_DX9"
+	{
+		"$color" "[0.5 0.5 0.5]" //fixes the HDR issue
+	}
+}

@@ -1,0 +1,114 @@
+@include "base.fgd"
+
+@BaseClass base(Targetname, Parentname, Angles, Studiomodel) = ent_item_base
+[ 
+	requires(string) : "Requires" : : "This is the itemID of the item required to unlock it."
+	
+	output OnItemAccept(void) : "Fires when the entity accepts item(ie. the player uses an item on it successfully)"
+	output OnItemDeny(void) : "Fires when the entity refuses item(ie. the player item use fails)"
+	
+	input ItemUsed(integer) : "An item has been used by the player."
+]
+
+@BaseClass base(Targetname, Parentname, Angles, Studiomodel) = ent_puzzle_base
+[
+]
+
+@PointClass base(Targetname) = ent_storymanager : "Once upon a time"
+[
+	input StartStory(integer) : "Starts a story"
+	input StopStory(void) : "Stops the current story"
+]
+
+@PointClass base(ent_puzzle_base) studio("models/sunabouzu/typewriter.mdl") = ent_typewriter : "STUPID CAT, GET OFF THE TYPEReveraobmojth op"
+[
+	phrase1(string) : "First Phrase" : : "The phrase required to call the related output" 
+	phrase2(string) : "Second Phrase" : : "The phrase required to call the related output" 
+	phrase3(string) : "Third Phrase" : : "The phrase required to call the related output" 
+	phrase4(string) : "Fourth Phrase" : : "The phrase required to call the related output" 
+	phrase5(string) : "Fifth Phrase" : : "The phrase required to call the related output" 
+	
+	output OnPhrase1(void) : "Fires on the correct phrase"
+	output OnPhrase2(void) : "Fires on the correct phrase"
+	output OnPhrase3(void) : "Fires on the correct phrase"
+	output OnPhrase4(void) : "Fires on the correct phrase"
+	output OnPhrase5(void) : "Fires on the correct phrase"
+	output OnFailure(void) : "Fires when the player inputs a non-phrase"
+]
+
+@PointClass base(ent_item_base) studioprop() = ent_loading_door : "FUCK THAT DOOR"
+[
+	spawnflags(flags) =
+	[
+		1 : "Generate output on +USE" : 1
+		2 : "Teleport player" : 1
+	]
+	
+	teleportentity(target_destination) : "Teleport To" : : "The name of the teleport entity." 
+	opendoorsound(sound) : "Door Open sound" : : "The sound the door will make when it opens."
+	closedoorsound(sound) : "Door Close sound" : : "The sound the door will make when it closes."
+	lockdoorsound(sound) : "Door Locked sound" : : "The sound the door will make when it's locked(Or attempted at)."
+	unlockdoorsound(sound) : "Door Unlocked sound" : : "The sound the door will make when it's unlocked."
+	loadingscreen(string) : "Loading Screen" : : "Overrides the random loading screen"
+	
+	output OnTeleport(void) : "Fires on Teleport"
+	output OnUnlock(void) : "Fires when the door is unlocked"
+	output OnUse(void) : "Fires when an Entity uses this"
+	
+	input Teleport(void) : "Teleport the activator"
+	input Unlock(void) : "Unlock the door"
+	input Lock(void) : "Lock the door"
+]
+
+@PointClass base(Targetname, Parentname, Angles, Studiomodel) studio("models/sunabouzu/gameplay_candle.mdl") = ent_candle : "Candles, THE CANDLES"
+[
+	spawnflags(flags) =
+	[
+		1 : "Starts On" : 0
+	]
+	
+	color(Color255) : "Light Color" : "255 255 255 3" : "The light color(r, g, b, [brightness])." 
+	renderdistance(float) : "Render Distance" : 512 : "The distance before the Dynamic Light stops rendering."
+	
+	output OnLight(void) : "Fires when the light is lit."
+	output OnExtinguish(void) : "Fires when the light is extinguished"
+	
+	input Light(void) : "Lights the candle."
+	input Extinguish(void) : "Extinguish the light."
+]
+
+@PointClass base(Targetname, Parentname, Angles) studio("models/Gibs/AGIBS.mdl") = ent_item : "An evil item."
+[
+	spawnflags(flags) =
+	[
+		1 : "Generate output on +USE" : 1
+		2 : "Give player the item" : 1
+		4 : "Can Move" : 0
+	]
+	
+	itemid(integer) : "Item ID" : : "The ID of the item."
+	enablemotion(choices) : "Enable Motion" : 0 : "Should motion be enabled?" =
+	[
+		0 : "False"
+		1 : "True"
+	]
+	
+	output OnUse(void) : "Fires when an Entity uses this"
+]
+
+@PointClass base(ent_item_base) studioprop() = ent_item_objective : "An evil item objective."
+[	
+	spawnflags(flags) =
+	[
+		1 : "Can Move" : 0
+		2 : "Can pickup item(Must have itemID)" : 0
+		4 : "Any item can be placed" : 0
+		8 : "Starts transparent(will not spawn the item)" : 1
+	]
+	
+	itemid(integer) : "Item ID" : : "The ID of the item."
+	retricteditems(string) : "Restricted To" : : "The item IDs that can be placed here(ie 1,3,2,5)."
+	pickupsound(string) : "Pickup Sound" : : "The sound that'll be made when picked up."
+	
+	output OnPickup(void) : "Fires when the player picks up the entity"
+]

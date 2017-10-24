@@ -1,0 +1,9 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models\sunabouzu/bookstore_shelf"
+	"$model" "1"
+	$detail detail\noise_detail_01
+	$detailscale 7.74
+	$detailblendfactor 0.8
+	$detailblendmode 0
+}

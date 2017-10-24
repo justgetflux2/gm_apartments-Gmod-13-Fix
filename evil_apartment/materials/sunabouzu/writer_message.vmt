@@ -1,0 +1,8 @@
+"UnlitGeneric"
+{
+	"$basetexture" "sunabouzu/writer_message"
+	"$surfaceprop" "Concrete"
+	"%keywords" "suna"
+	"$alphatest" 1
+	"$nodecal" 1
+}

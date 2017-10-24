@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"name"			"Apartments"
+	"version"			"1"
+	"up_date"			"May 2011"
+	"author_name"		"Sunabouzu and Unrealomega"
+	"author_email"		""
+	"info"			"Survival Horror Apartments"
+}

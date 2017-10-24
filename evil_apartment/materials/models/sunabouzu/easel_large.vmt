@@ -1,0 +1,8 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/sunabouzu/easel_large" //This model is supposed to look unusually clean, do not uncomment detail.
+//	$detail detail\noise_detail_01
+//	$detailscale 7.74
+//	$detailblendfactor 0.8
+//	$detailblendmode 0
+}

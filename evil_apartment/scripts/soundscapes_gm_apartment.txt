@@ -1,0 +1,169 @@
+"apr.artist"
+{
+	"dsp" "1"
+
+	"playlooping"
+	{
+		"volume"	"0.35"
+		"pitch"		"85"
+
+		"wave"	"ambient\atmosphere\quiet_cellblock_amb.wav"
+	}
+
+	"playrandom"
+	{
+		"time"		"8,20"
+		"volume"	"0.7,.8"
+		"pitch"		"90,105"
+		"soundlevel"	"SNDLVL_65dB"
+
+		"rndwave"
+		{
+			"wave"	"sunabouzu/flourish1.wav"
+			"wave"	"sunabouzu/flourish2.wav"
+			"wave"	"sunabouzu/flourish3.wav"
+		}
+	}
+}
+
+"apr.normal"
+{
+	"dsp" "1"
+
+	"playlooping"
+	{
+		"volume"	"0.35"
+		"pitch"		"85"
+
+		"wave"	"ambient\atmosphere\quiet_cellblock_amb.wav"
+	}
+
+	"playrandom"
+	{
+		"time"		"8,35"
+		"volume"	"0.6,.8"
+		"pitch"		"90,105"
+		"soundlevel"	"SNDLVL_65dB"
+
+		"position"	"random"
+
+		"rndwave"
+		{
+			"wave"	"ambient\materials\shuffle1.wav"
+			"wave"	"ambient\materials\creak5.wav"
+			"wave"	"ambient\materials\metal_rattle4.wav"
+			"wave"	"ambient\materials\metal_rattle3.wav"
+			"wave"	"ambient\materials\rustypipes2.wav"
+			"wave"	"ambient\materials\rustypipes3.wav"
+			"wave"	"ambient\materials\wood_creak1.wav"
+			"wave"	"ambient\materials\wood_creak2.wav"
+			"wave"	"ambient\materials\wood_creak3.wav"
+			"wave"	"ambient\materials\wood_creak4.wav"
+			"wave"	"ambient\materials\wood_creak5.wav"
+			"wave"	"ambient\materials\wood_creak6.wav"
+			"wave"	"ambient\creatures\rats1.wav"
+			"wave"	"ambient\creatures\rats2.wav"
+		}
+	}
+}
+
+"apr.classical"
+{
+	"dsp" "1"
+
+	"playlooping"
+	{
+		"volume"	"0.35"
+		"pitch"		"85"
+
+		"wave"	"ambient\atmosphere\quiet_cellblock_amb.wav"
+	}
+
+	"playrandom"
+	{
+		"time"		"8,30"
+		"volume"	"0.7,.8"
+		"pitch"		"90,105"
+		"soundlevel"	"SNDLVL_65dB"
+
+		"rndwave"
+		{
+			"wave"	"sunabouzu/flourish4.wav"
+			"wave"	"sunabouzu/flourish5.wav"
+		}
+	}
+}
+
+"apr.nightmare"
+{
+	"dsp" "1"
+
+	"playlooping"
+	{
+		"volume"	"0.75"
+		"pitch"		"100"
+
+		"wave"	"sunabouzu/ihearasound.wav"
+	}
+	
+	"playlooping"
+	{
+		"volume"	"0.35"
+		"pitch"		"85"
+
+		"wave"	"ambient\atmosphere\quiet_cellblock_amb.wav"
+	}
+}
+
+
+"apr.nightmare.nobell"
+{
+	"dsp" "1"
+	
+	"playlooping"
+	{
+		"volume"	"0.35"
+		"pitch"		"85"
+
+		"wave"	"ambient\atmosphere\quiet_cellblock_amb.wav"
+	}
+
+	"playlooping"
+	{
+		"volume"	"0.3"
+		"pitch"		"100"
+
+		"wave"	"ambient\atmosphere\drone2lp.wav"
+	}
+}
+
+"apr.emi"
+{
+	"dsp" "1"
+
+	"playlooping"
+	{
+		"volume"	"0.35"
+		"pitch"		"85"
+
+		"wave"	"ambient\atmosphere\quiet_cellblock_amb.wav"
+	}
+
+	"playrandom"
+	{
+		"time"		"8,20"
+		"volume"	"0.7,.8"
+		"pitch"		"90,105"
+		"soundlevel"	"SNDLVL_65dB"
+
+		"rndwave"
+		{
+			"wave"	"sunabouzu/vocalflourish1.wav"
+			"wave"	"sunabouzu/vocalflourish2.wav"
+			"wave"	"sunabouzu/vocalflourish3.wav"
+			"wave"	"sunabouzu/vocalflourish4.wav"
+			"wave"	"sunabouzu/vocalflourish5.wav"
+			"wave"	"sunabouzu/flourish6.wav"
+		}
+	}
+}

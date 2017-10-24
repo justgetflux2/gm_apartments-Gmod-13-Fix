@@ -1,0 +1,34 @@
+// Physics Sounds
+//
+//	NOTE:  CHAN_BODY is used by sounds in many cases, but the code
+//   uses CHAN_STATIC in others, so I didn't specify a channel here
+//  Volume is determined procedurally by the physics code
+// NOTE FROM SUNABOUZU: This is my very angry attempt to get proper carpet footstep sounds. Please do not fuck //with this. Feel free to turn this into a community sounds thing though.
+
+// *****************
+// CARPET MATERIALS
+
+"Carpet.StepLeft"
+{
+	"soundlevel"		"SNDLVL_75dB"
+	"pitch"			"PITCH_NORM"
+	"volume"			"1.0"
+	"rndwave"
+	{
+		"wave"		"sunabouzu/carpet1.wav"
+		"wave"		"sunabouzu/carpet3.wav"
+	}
+}
+
+"Carpet.StepRight"
+{
+	"soundlevel"		"SNDLVL_75dB"
+	"pitch"			"PITCH_NORM"
+	"volume"			"1.0"
+	"rndwave"
+	{
+		"wave"		"sunabouzu/carpet2.wav"
+		"wave"		"sunabouzu/carpet4.wav"
+	}
+}
+

@@ -1,0 +1,10 @@
+"UnlitGeneric"
+{
+	"$basetexture" "sunabouzu/inv_arrow_left"
+	"$translucent" 1
+	"$alphatest" 1
+	"$nolod" 1
+	"$vertexalpha" 1
+	"$vertexcolor" 1
+	"$ignorez" "1"
+}

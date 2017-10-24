@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+	"$basetexture" "sunabouzu/load_normal"
+	"$nolod" "1"
+	"$translucent" "1"
+	"$ignorez" "1"
+}

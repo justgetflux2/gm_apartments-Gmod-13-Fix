@@ -1,0 +1,15 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/sunabouzu/beaker"
+//	"$envmap" "env_cubemap"
+//	"$envmapmask" "models/sunabouzu/beaker_spec"
+//	"$envmapcontrast" 1
+//	"$envmapsaturation" .7
+//	"$envmaptint" "[ .75 .75 .75 ]"
+//	"$alphatest" 1 
+}
+//Hey you! You get a free tip for looking at the .vmt's! Source cannot have two
+//different values for transparency in one texture. Thats why two models have variations
+//of the same texture. I had to split the beaker and it's base up to get the beaker
+//transparent but the base not, originally they were one model. Welp thats the story.
+//Have a nice day! 

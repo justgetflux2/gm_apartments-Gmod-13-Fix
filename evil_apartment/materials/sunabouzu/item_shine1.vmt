@@ -1,0 +1,19 @@
+"UnlitGeneric"
+{
+	"$basetexture" "sunabouzu/item_shine1"
+//	"$nolod" 1
+//	"$translucent" 1
+//	"$color" [.7804 .6588 .2862]
+	"$vertexalpha" 1
+	"$vertexcolor" 1
+	Proxies
+	{
+		Sine
+		{
+			resultVar	"$alpha"
+			sineperiod	4.00
+			sinemin		0.00
+			sinemax		0.1
+		}
+	}
+}

@@ -1,0 +1,23 @@
+//Ok so there was no option for 'carpet' in surface properties and using dirt is fucking stupid, so this just
+//adds in new footstep sounds without having to override the dirt footsteps, or using lua. Yeah apparently
+//you can just add in new surface properties whenever you want. I didn't know that either until now vOv. 
+
+
+"carpet"
+{
+	"density"	"1600"
+	"elasticity"	"0.01"
+	"friction"	"0.8"
+
+	"stepleft"	"Carpet.StepLeft"
+	"stepright"	"Carpet.StepRight"
+	"impacthard"	"Dirt.Impact"
+	"scraperough"	"Dirt.Scrape"
+	"bulletimpact"	"Dirt.BulletImpact"
+
+	"audioreflectivity" "0.03"
+	"audiohardnessfactor" "0.25"
+
+	"gamematerial"	"D"
+}
+	

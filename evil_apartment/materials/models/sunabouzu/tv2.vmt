@@ -1,0 +1,14 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/sunabouzu/tv2"
+	"$selfillum" 1
+	"Proxies" 
+       { 
+         "AnimatedTexture" 
+         { 
+            "animatedTextureVar" "$basetexture" 
+            "animatedTextureFrameNumVar" "$frame" 
+            "animatedTextureFrameRate" "12" 
+         }
+    } 
+}
