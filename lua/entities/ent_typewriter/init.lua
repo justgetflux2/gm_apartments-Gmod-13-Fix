@@ -24,12 +24,12 @@ function ENT:Use(activator, caller)
 
 		print("Calling self:SetUser...")
 		print(self)
-		self:SetUser(activator)
+		//self:SetUser(activator)
 		//Le'ts try freezing the player for now
 		activator:Freeze(true)
 		print("SelfUser stopped being called")
 
-		umsg.Start("eviltyper_use", activator)
+		umsg.Start("eviltyper_use", activator, self)
 			umsg.Bool(true)
 			umsg.Entity(self)
 		umsg.End()
@@ -47,12 +47,7 @@ function ENT:CheckPhrase(ply, value)
 			print("TriggerOutput")
 			self:TriggerOutput("OnPhrase1", ply)
 
-			self:SetUser(NULL)
-
-			umsg.Start("eviltyper_use", activator)
-				umsg.Bool(false)
-			umsg.End()
-			ply:Freeze(false)
+			self:LeaveTW(ply)
 			return
 		end
 	end
@@ -100,21 +95,32 @@ function ENT:KeyValue(key, value)
 	end
 end
 
+function ENT:LeaveTW(ply)
+	//WIP WON'T WORK IN MULTIPLAYER
+	self:SetUser(NULL)
+
+	umsg.Start("eviltyper_use", activator, self:EntIndex())
+		umsg.Bool(false)
+	umsg.End()
+	ply:Freeze(false)
+end
+
+//evil_typer(text, player)
 concommand.Add("evil_typer", function(ply, cmd, args)
 		print("evil_typer command called")
 		if !args[1] then return end
 		//GetScriptedVehicle changed to GetVehicle
-		local veh = ply:GetEyeTrace().Entity
+		local tw = Entity(args[2])
 		print("veh")
 		print(veh)
 
 
 		//Changed ValidEntity to IsValid
-		if IsValid(veh) && veh:GetClass() == "ent_typewriter" then
-			//veh = veh:GetDriver()
+		if IsValid(tw) && tw:GetClass() == "ent_typewriter" then
+			//tw = tw:GetDriver()
 
-			if veh:GetPos():Distance(ply:GetPos()) <= 256 then
-				veh:CheckPhrase(ply, args[1])
+			if tw:GetPos():Distance(ply:GetPos()) <= 256 then
+				tw:CheckPhrase(ply, args[1])
 			end
 		end
 	end)
@@ -123,12 +129,9 @@ concommand.Add("evil_typerleave", function(ply, cmd, args)
 		print("command evil_typerleave(ply,cmd,args) called")
 		print(ply)
 		print(cmd)
-		print(args)
+		//args[1] = entityIndex
+		print(args[1])
 		print("\n")
-		//GetScriptedVehicle changed to GetVehicle
-		local veh = ply:GetVehicle()
-		print("veh")
-		print(veh)
 
 		//Changed ValidEntity to IsValid
 		//if IsValid(veh) then
@@ -136,16 +139,7 @@ concommand.Add("evil_typerleave", function(ply, cmd, args)
 			//veh = veh:GetParent()
 
 			if IsValid(veh)	&& veh:GetClass() == "ent_typewriter" || true then
-				//veh:SetUser(NULL)
-				print("ply:ExitVehicle called")
-				ply:ExitVehicle()
-
-				//WIP WON'T WORK IN MULTIPLAYER
-				ply:Freeze(false)
-
-				umsg.Start("eviltyper_use", activator)
-					umsg.Bool(false)
-				umsg.End()
+				Entity(args[1]):LeaveTW(ply)
 			end
 		end
 	end)

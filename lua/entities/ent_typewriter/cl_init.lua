@@ -35,14 +35,14 @@ function ENT:DoKeyStroke(key, shift)
 end
 
 function ENT:Think()
-	if self:GetUserID() != LocalPlayer():EntIndex() || (self.NextTypeCheck && self.NextTypeCheck > CurTime()) then return end
+	//if self:GetUserID() != LocalPlayer():EntIndex() || (self.NextTypeCheck && self.NextTypeCheck > CurTime()) then return end
 
 	if input.IsKeyDown(KEY_END) then
 		table.Empty(m_KeyPressed)
 
 		m_PaperInterface:ClearLines()
 
-		RunConsoleCommand("evil_typerleave")
+		RunConsoleCommand("evil_typerleave", self:EntIndex())
 		
 		return
 	end
@@ -54,7 +54,7 @@ function ENT:Think()
 			local text = m_PaperInterface:NewLine()
 
 			if text then
-				RunConsoleCommand("evil_typer", text)
+				RunConsoleCommand("evil_typer", text, self:EntIndex())
 
 				self.NextTypeCheck = CurTime() + 1.5
 				self:EmitSound(m_Sounds["unload"], 100, 100)
@@ -128,13 +128,21 @@ end
 
 /*If this is set to true, the typewriter interface will be enabled*/
 usermessage.Hook("eviltyper_use", function(um)
+		local isEnabled = um:ReadBool()
+		print("eviltyper_use called")
+		print("args: bool = " .. tostring(isEnabled))
 		if ValidPanel(m_PaperInterface) then
-			m_PaperInterface:SetVisible(um:ReadBool())
+			m_PaperInterface:SetVisible(isEnabled)
+			/*It seems like the typewriter keeps accepting input after
+			the player has left and then displays them, a way to circumvent
+			a way this is to simply clear the screen when the player reEnters
+			the TW; I told you these solutions were VERY bruteforce*/
+			m_PaperInterface:ClearLines()
 		end
 		// fix bug where the type writer would register use button
-		local ent = um:ReadEntity()
 		if IsValid( ent ) then ent.NextTypeCheck = CurTime() + .5 end
-	end)
+	end
+)
 
 hook.Remove("OnSpawnMenuOpen", "DontOpen", function()
 		print("hook.Remove OnSpawnMenuOpen DontOpen called")
@@ -147,4 +155,5 @@ hook.Remove("OnSpawnMenuOpen", "DontOpen", function()
 				return true
 			end
 		end
-	end)
+	end
+)
