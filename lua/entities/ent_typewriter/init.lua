@@ -29,10 +29,12 @@ function ENT:Use(activator, caller)
 		activator:Freeze(true)
 		print("SelfUser stopped being called")
 
-		umsg.Start("eviltyper_use", activator, self)
+		
+		umsg.Start("eviltyper_use", activator)
 			umsg.Bool(true)
 			umsg.Entity(self)
 		umsg.End()
+		
 	end
 end
 
@@ -99,7 +101,7 @@ function ENT:LeaveTW(ply)
 	//WIP WON'T WORK IN MULTIPLAYER
 	self:SetUser(NULL)
 
-	umsg.Start("eviltyper_use", activator, self:EntIndex())
+	umsg.Start("eviltyper_use", activator)
 		umsg.Bool(false)
 	umsg.End()
 	ply:Freeze(false)
