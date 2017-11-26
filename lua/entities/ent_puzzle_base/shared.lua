@@ -32,14 +32,14 @@ function ENT:SetUser(user)
 	if oldUser == user:EntIndex() then return end
 
 	oldUser = ents.GetByIndex(oldUser)
-  print(oldUser)
+  	print(oldUser)
 
 	local isCorrect = user && true
 
 	if SERVER then
-    print("SERVER is true")
+    	print("SERVER is true")
 		if IsValid(oldUser) then
-      print("olduer is valid")
+      		print("olduer is valid")
 			oldUser:ExitVehicle()
 
 			oldUser:UnSpectate()
@@ -57,8 +57,6 @@ function ENT:SetUser(user)
 			end
 		end
 
-		if IsValid && user:IsPlayer() then
-			user:SetScriptedVehicle(self:GetCameraEntity())
 		if isCorrect && user:IsPlayer() then
 			print("If it's correct and user isPlayer")
 			//SetScriptedVehicle changed to EnterVehicle
