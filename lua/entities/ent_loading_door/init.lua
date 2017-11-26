@@ -50,7 +50,6 @@ function ENT:Use(activator, caller)
 	print(activator)
 	print(caller)
 	print("\n")
-	
 	self:TriggerOutput("OnUse", activator)
 
 	if self:HasSpawnFlags(1) && IsValid(activator) then
@@ -129,8 +128,7 @@ function startDoorLoading(ply, door)
 	print(ply)
 	print(door)
 	print("\n")
-	
-	
+  
 	if errorFunc(!IsValid(ply) || !IsValid(door), "Door or Player is missing")
 		|| errorFunc(ply.IsTeleporting, "Player is already teleporting") then
 		return
@@ -145,7 +143,6 @@ function startDoorLoading(ply, door)
 		door:DoTransition(ply)
 		//Added the "door" argument to the DoTeleport
 		door:DoTeleport(ply, door)
-		
 	end
 end
 

@@ -25,7 +25,6 @@ function ENT:SetCloseDoorSound(sound)
 	self:SetNWString("closedoorsound", sound)
 end
 
-
 function ENT:GetLockedDoorSound()
 	return self:GetNWString("lockdoorsound", nil)
 end

@@ -57,6 +57,8 @@ function ENT:SetUser(user)
 			end
 		end
 
+		if IsValid && user:IsPlayer() then
+			user:SetScriptedVehicle(self:GetCameraEntity())
 		if isCorrect && user:IsPlayer() then
 			print("If it's correct and user isPlayer")
 			//SetScriptedVehicle changed to EnterVehicle
