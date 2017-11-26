@@ -2,8 +2,9 @@ ENT.Type = "anim"
 ENT.Base = "ent_puzzle_base"
 
 hook.Remove("PlayerBindPress", "StopInput", function(Vehicle, ply, bind, pressed)
-		--local veh = ply:GetScriptedVehicle()
-		  local veh = Vehicle:GetVehicleClass()
+		print("hook.remove playerbindpress called")
+		//local veh = ply:GetScriptedVehicle()
+		  local veh = Vehicle:GetVehicle()
 
 		if IsValid(veh) then
 			veh = veh:GetParent()
@@ -12,4 +13,5 @@ hook.Remove("PlayerBindPress", "StopInput", function(Vehicle, ply, bind, pressed
 				return true
 			end
 		end
-	end)
+	end
+)

@@ -7,6 +7,12 @@ local m_Sounds = {
 	}
 local m_PaperInterface
 
+//Is the user currently using the typewriter?
+local isBeingUsed = false
+
+//Is the typewriter puzzle completed?
+local isPuzzleCompleted = false
+
 function ENT:Initialize()
 	if !ValidPanel(m_PaperInterface) then
 		m_PaperInterface = vgui.Create("typewriter_paper")
@@ -29,20 +35,37 @@ function ENT:DoKeyStroke(key, shift)
 		return
 	end
 
-	self:EmitSound(m_Sounds["keypress"], 100, math.random(90, 100))
+	--self:EmitSound(m_Sounds["keypress"], 100, math.random(90, 100))
+	  self:EmitSound("typewriter/keystroke"..math.random(1,4)..".wav", 100, 100)
 
 	m_PaperInterface:AddChar(char)
 end
 
+//Adds a new line to the typewriter
+function doNewLine(typewriter)
+	local text = m_PaperInterface:NewLine()
+
+	if text then
+		RunConsoleCommand("evil_typer", text, typewriter:EntIndex())
+
+		typewriter.NextTypeCheck = CurTime() + 1.5
+		typewriter:EmitSound("typewriter/rollpaper"..math.random(1,4)..".wav", 100, 100)
+		--typewriter:EmitSound(m_Sounds["unload"], 100, 100)
+
+		return
+	end
+end
+
 function ENT:Think()
-	if self:GetUserID() != LocalPlayer():EntIndex() || (self.NextTypeCheck && self.NextTypeCheck > CurTime()) then return end
+	//This verification will probably have to change when we go to multiplayer
+	if !isBeingUsed || (self.NextTypeCheck && self.NextTypeCheck > CurTime()) then return end
 
 	if input.IsKeyDown(KEY_END) then
 		table.Empty(m_KeyPressed)
 
 		m_PaperInterface:ClearLines()
 
-		RunConsoleCommand("evil_typerleave")
+		RunConsoleCommand("evil_typerleave", self:EntIndex())
 
 		return
 	end
@@ -51,20 +74,13 @@ function ENT:Think()
 		if !m_KeyPressed[KEY_ENTER] then
 			m_KeyPressed[KEY_ENTER] = true
 
-			local text = m_PaperInterface:NewLine()
-
-			if text then
-				RunConsoleCommand("evil_typer", text)
-
-				self.NextTypeCheck = CurTime() + 1.5
-				self:EmitSound(m_Sounds["unload"], 100, 100)
-
-				return
-			end
+			doNewLine(self)
+			return
 		end
 	else
 		if m_KeyPressed[KEY_ENTER] then
 			m_KeyPressed[KEY_ENTER] = false
+
 		end
 	end
 
@@ -123,20 +139,47 @@ function ENT:Think()
 		if keyBeenPressed then
 			self.NextTypeCheck = CurTime() + .05
 		end
+	else
+		//If the current line feed is already full, a new line is intered
+		/*local text = m_PaperInterface:NewLine()
+
+			if text then
+				RunConsoleCommand("evil_typer", text, self:EntIndex())
+
+				self.NextTypeCheck = CurTime() + 1.5
+				self:EmitSound(m_Sounds["unload"], 100, 100)
+
+				return
+			end
+		*/
+		doNewLine(self)
 	end
 end
 
+/*If this is set to true, the typewriter interface will be enabled*/
 usermessage.Hook("eviltyper_use", function(um)
+		isBeingUsed = um:ReadBool()
+		print("eviltyper_use called")
+		print("args: bool = " .. tostring(isBeingUsed))
 		if ValidPanel(m_PaperInterface) then
-			m_PaperInterface:SetVisible(um:ReadBool())
+			m_PaperInterface:SetVisible(isBeingUsed)
+			/*It seems like the typewriter keeps accepting input after
+			the player has left and then displays them, a way to circumvent
+			a way this is to simply clear the screen when the player reEnters
+			the TW; I told you these solutions were VERY bruteforce*/
+			//m_PaperInterface:ClearLines()
 		end
 
-		// fix bug where the type writer would register use button
-		local ent = um:ReadEntity()
-		if IsValid( ent ) then ent.NextTypeCheck = CurTime() + .5 end
-	end)
+		local writer = um:ReadEntity()
+		print("writer");print(writer);print("\n")
+
+		//Fixes the typewriter registering the user key by delaying input reception
+		writer.NextTypeCheck = CurTime() + .4
+	end
+)
 
 hook.Remove("OnSpawnMenuOpen", "DontOpen", function()
+		print("hook.Remove OnSpawnMenuOpen DontOpen called")
 		local veh = LocalPlayer():GetScriptedVehicle()
 
 		if IsValid(veh) then
@@ -146,4 +189,5 @@ hook.Remove("OnSpawnMenuOpen", "DontOpen", function()
 				return true
 			end
 		end
-	end)
+	end
+)
