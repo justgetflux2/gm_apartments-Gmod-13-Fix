@@ -46,6 +46,10 @@ function ENT:GetTeleportEntity()
 end
 
 function ENT:Use(activator, caller)
+	print("Function Use called (activator, caller)")
+	print(activator)
+	print(caller)
+	print("\n")
 	self:TriggerOutput("OnUse", activator)
 
 	if self:HasSpawnFlags(1) && IsValid(activator) then
@@ -120,7 +124,11 @@ local function errorFunc(hasFailed, reason)
 end
 
 function startDoorLoading(ply, door)
-
+	print("startDoorLoading called (ply, door)")
+	print(ply)
+	print(door)
+	print("\n")
+  
 	if errorFunc(!IsValid(ply) || !IsValid(door), "Door or Player is missing")
 		|| errorFunc(ply.IsTeleporting, "Player is already teleporting") then
 		return
@@ -132,9 +140,9 @@ function startDoorLoading(ply, door)
 		end
 	else
 		door:TriggerOutput("OnTeleport", ply)
-
 		door:DoTransition(ply)
-		door:DoTeleport(ply)
+		//Added the "door" argument to the DoTeleport
+		door:DoTeleport(ply, door)
 	end
 end
 
@@ -150,15 +158,24 @@ function ENT:OnItemAccept(ply)
 end
 
 function ENT:DoTeleport(ply, door)
- if IsValid(ply) then
-
+	print("function ENT:DoTeleport running with arguments:")
+	print(ply)
+	print(door)
+	print("\n")
+	
+	if IsValid(ply) then
+	print("ply is valid")
+	
 	 if SERVER && IsValid(door) then
-
+	 print("Server and door are valid")
+	 
 		 // If the spawn flag "Teleport player" is 1
 		 if door:HasSpawnFlags(2) then
+			 print("SpawnFlag set to 2 'Teleport Player'")
 			 local teleEnt = door:GetTeleportEntity()
 
 			 if IsValid(teleEnt) then
+				 print("teleEnt is valid")
 				 ply:SetPos(teleEnt:GetPos())
 				 ply:SetEyeAngles(Angle(0, teleEnt:GetAngles().y, 0))
 			 end
@@ -173,5 +190,7 @@ function ENT:DoTeleport(ply, door)
 	 end
 
 	 ply:Freeze(false)
+	 print("Player freeze set to false")
+	 print("\n")
  end
 end--, ply, self)

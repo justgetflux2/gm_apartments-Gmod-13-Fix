@@ -23,7 +23,10 @@ hook.Add("RenderScreenspaceEffects", "FadeEffect", function()
 	end)
 
 function ENT:SetTransition(isOn)
-	m_DisableView = isOn
+
+	//For some reason when a door loads the loading screens stays forever, so this will
+	/*m_DisableView = isOn
+
 
 	if isOn then
 		local override = self:GetLoadingScreen()
@@ -43,7 +46,7 @@ function ENT:SetTransition(isOn)
 		end
 	else
 		m_CurrLoadingTexture = nil
-	end
+	end*/
 end
 
 usermessage.Hook("re_startloading", function(um)

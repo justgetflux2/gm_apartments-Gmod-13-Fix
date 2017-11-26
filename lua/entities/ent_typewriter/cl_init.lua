@@ -49,6 +49,7 @@ function doNewLine(typewriter)
 		RunConsoleCommand("evil_typer", text, typewriter:EntIndex())
 
 		typewriter.NextTypeCheck = CurTime() + 1.5
+    
 		typewriter:EmitSound("typewriter/rollpaper"..math.random(1,4)..".wav", 100, 100)
 		--typewriter:EmitSound(m_Sounds["unload"], 100, 100)
 
@@ -66,7 +67,6 @@ function ENT:Think()
 		m_PaperInterface:ClearLines()
 
 		RunConsoleCommand("evil_typerleave", self:EntIndex())
-
 		return
 	end
 
@@ -80,7 +80,6 @@ function ENT:Think()
 	else
 		if m_KeyPressed[KEY_ENTER] then
 			m_KeyPressed[KEY_ENTER] = false
-
 		end
 	end
 

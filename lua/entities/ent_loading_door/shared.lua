@@ -25,7 +25,6 @@ function ENT:SetCloseDoorSound(sound)
 	self:SetNWString("closedoorsound", sound)
 end
 
-/*
 function ENT:GetLockedDoorSound()
 	return self:GetNWString("lockdoorsound", nil)
 end
@@ -40,7 +39,7 @@ end
 
 function ENT:SetLockState(lock)
 	self:SetNWBool("doorlock", tobool(lock))
-end*/
+end
 
 function ENT:GetLoadingScreen()
 	return self:GetNWString("loadingscreen", nil)
@@ -52,8 +51,8 @@ end
 
 function ENT:DoTransition(ply)
 	if !IsValid(ply) then return end
-
-	ply:Freeze(true)
+	//making the player not freeze will prevent the camera from going into softLock
+	//ply:Freeze(true)
 
 	if SERVER then
 		umsg.Start("re_startloading", ply)
@@ -68,7 +67,7 @@ function ENT:DoTransition(ply)
 		self:SetTransition(true)
 	end
 end
-	  --[[ function ENT:DoTeleport(ply, door)
+	   function ENT:DoTeleport(ply, door)
 			if IsValid(ply) then
 
 				if SERVER && IsValid(door) then
@@ -93,4 +92,4 @@ end
 
 				ply:Freeze(false)
 			end
-		end--, ply, self)]]
+		end

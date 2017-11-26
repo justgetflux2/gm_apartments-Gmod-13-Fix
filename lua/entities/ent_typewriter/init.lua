@@ -29,12 +29,10 @@ function ENT:Use(activator, caller)
 		activator:Freeze(true)
 		print("SelfUser stopped being called")
 
-
 		umsg.Start("eviltyper_use", activator)
 			umsg.Bool(true)
 			umsg.Entity(self)
 		umsg.End()
-
 	end
 end
 
@@ -49,7 +47,6 @@ function ENT:CheckPhrase(ply, value)
 			print("TriggerOutput")
 			self:TriggerOutput("OnPhrase1", ply)
 			self:EmitSound("typewriter/correct.wav", 100, 100)
-
 			self:LeaveTW(ply)
 			return
 		end
