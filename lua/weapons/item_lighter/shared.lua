@@ -159,6 +159,17 @@ function SWEP:GetLightColor()
 	return 212, 131, 43
 end
 
+local function has_value (tab, val)
+    for index, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+
+    return false
+end
+--List of entities that, when looked at, will cause the player's crosshair to light up
+test = {"ent_candle","ent_loading_door","ent_item","ent_item_objective","ent_typewriter"}
 if SERVER then
 	if game.GetMap() == "gm_apartment" then
 		hook.Add("PlayerSwitchFlashlight", "DisableFlashLight", function(ply, SwitchOn)
@@ -171,6 +182,16 @@ else
 	local m_Crosshair = Material("effects/softglow")
 
 	function SWEP:DrawHUD()
+		//Homemade solution to make the Crosshair only be drawn when over important stuff
+		isImportant = false
+		entLookedAt = LocalPlayer():GetEyeTrace().Entity
+		if entLookedAt and entLookedAt:IsValid() then
+			isImportant = has_value(test,entLookedAt:GetClass())
+		end
+		
+		
+		LocalPlayer():SetDrawCrosshair(isImportant)
+
 		if LocalPlayer():ShouldDrawCrosshair() then
 			local pos = LocalPlayer():EyePos()
 			local trace = util.TraceLine({

@@ -1,7 +1,7 @@
 if string.sub(game.GetMap(),1,12) == "gm_apartment" then
 	if !game.SinglePlayer() then
 		print("THIS WAS A BAD IDEA, WHY DID I STICK IT IN THE TOASTER")
-		--RunConsoleCommand("killserver")
+		RunConsoleCommand("killserver")
 		return
 	end
 
@@ -22,6 +22,9 @@ if string.sub(game.GetMap(),1,12) == "gm_apartment" then
 
 	EVIL_CHEAT_CONVAR = CreateConVar("sv_evil_cheats", "0", {FCVAR_REPLICATED, FCVAR_CHEAT}, "Enable Evil Apartment cheats.")
 
+	hook.Add("PlayerSwitchFlashlight", "DisableFlashLight", function(ply, SwitchOn)
+				return false
+			end)
 	for _, v in pairs(file.Find("autorun/vgui/*.lua", "LUA" )) do include("vgui/" .. v) end
 
 	if SERVER then
