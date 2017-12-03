@@ -1,4 +1,4 @@
-if game.GetMap() == "gm_apartment" then
+if string.sub(game.GetMap(),1,12) == "gm_apartment" then
 	if !game.SinglePlayer() then
 		print("THIS WAS A BAD IDEA, WHY DID I STICK IT IN THE TOASTER")
 		--RunConsoleCommand("killserver")
