@@ -5,20 +5,6 @@ if string.sub(game.GetMap(),1,12) == "gm_apartment" then
 		return
 	end
 
-	sound.Add(
-	{
-		name = "lighter.use",
-		channel	= CHAN_ITEM,
-		volume	= 0.8,
-		soundlevel = SNDLVL_70dB,
-		pitch= { 97,103 },
-
-		  sound =	"lighter/use1.wav",
-	    sound =	"lighter/use2.wav",
-			sound =	"lighter/use3.wav",
-	    sound =	"lighter/use4.wav"
-
-	})
 
 	EVIL_CHEAT_CONVAR = CreateConVar("sv_evil_cheats", "0", {FCVAR_REPLICATED, FCVAR_CHEAT}, "Enable Evil Apartment cheats.")
 
