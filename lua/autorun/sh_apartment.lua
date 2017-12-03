@@ -95,18 +95,14 @@ if string.sub(game.GetMap(),1,12) == "gm_apartment" then
 				return table.HasValue(itemsToGive, wep:GetName())
 			end)*/
 
-			function UseAnimationKey( ply, key )  local WEP = ply:GetActiveWeapon() if key == IN_USE and IsValid(WEP) and WEP.UseAnimation and WEP:IsLit() then
-				WEP:UseAnimation()
-			end
-		end
-		hook.Add("KeyPress","UseAnimationKeyHook",UseAnimationKey)
-
-		hook.Add("EntityTakeDamage", "NoDamagePlease", function(ent, inflictor, attacker, amount, dmginfo)
-				if ent:IsPlayer() then
-					dmginfo:ScaleDamage(0)
+		        hook.Add("EntityTakeDamage", "NoDamagePlease", function(ent, dmginfo)
+			local attacker = dmginfo:GetAttacker()
+                        local inflictor = dmginfo:GetInflictor()
+                        local amount = dmginfo:GetDamage()
+			if ent:IsPlayer() then
+			dmginfo:ScaleDamage(0)
 				end
 			end)
-
 
 	else
 		local metaEntity = FindMetaTable("Entity")
