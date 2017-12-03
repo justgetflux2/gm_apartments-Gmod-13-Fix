@@ -5,8 +5,9 @@ ENT.PrintName		= ""
 ENT.Author			= ""
 ENT.Contact			= ""
 ENT.Purpose			= ""
-ENT.Instructions	= ""
-
+ENT.Instructions	= "" 
+//Time the "loading screen" will stay active
+timeLoading = 2
 ENABLE_FAKE_LOADING = CreateConVar("sv_evil_loading", "1", FCVAR_REPLICATED, "Enables the loading screen.")
 
 function ENT:GetOpenDoorSound()
@@ -51,8 +52,6 @@ end
 
 function ENT:DoTransition(ply)
 	if !IsValid(ply) then return end
-	//making the player not freeze will prevent the camera from going into softLock
-	//ply:Freeze(true)
 
 	if SERVER then
 		umsg.Start("re_startloading", ply)
@@ -65,6 +64,8 @@ function ENT:DoTransition(ply)
 		end
 
 		self:SetTransition(true)
+		timer.Simple(2, function() self:SetTransition(false) end)
+		//
 	end
 end
 	   function ENT:DoTeleport(ply, door)
@@ -89,7 +90,5 @@ end
 
 					door:SetTransition(false)
 				end
-
-				ply:Freeze(false)
 			end
 		end

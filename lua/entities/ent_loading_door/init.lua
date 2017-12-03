@@ -188,9 +188,5 @@ function ENT:DoTeleport(ply, door)
 
 		 door:SetTransition(false)
 	 end
-
-	 ply:Freeze(false)
-	 print("Player freeze set to false")
-	 print("\n")
  end
 end--, ply, self)
