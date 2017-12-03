@@ -6,3 +6,4 @@ ITEM.Description = "Look at a door and press the use key to unlock it."
 ITEM.CamPos = Vector(0, 128, 128)
 ITEM.LookAtPos = Vector(0, -1, 0)
 ITEM.FOV = 5
+ITEM.PickupSound = "sunabouzu/keys_pickup.wav"

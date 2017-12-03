@@ -6,3 +6,4 @@ ITEM.Description = "Found in room 304. I can unlock a door by using this key."
 ITEM.CamPos = Vector(0, 128, 128)
 ITEM.LookAtPos = Vector(0, -1, 0)
 ITEM.FOV = 5
+ITEM.PickupSound = "sunabouzu/keys_pickup.wav"

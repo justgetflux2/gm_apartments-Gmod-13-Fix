@@ -1,7 +1,9 @@
 ITEM.ID = 12
+ITEM.Skin = 0
 ITEM.Name = "Portrait of Henry II"
-ITEM.Model = "models/sunabouzu/puzzle_portrait.mdl" 
-ITEM.Description = "A large portrait. I could hang it up on a wall if I wanted to."
+ITEM.Model = "models/sunabouzu/puzzle_portrait.mdl"
+ITEM.Description = "A large portrait of Henry The II. It seems that there is a marking on the portrait reading.. 6/7/1189.  I could hang it up on a wall if I wanted to."
 ITEM.CamPos = Vector(50, 50, 50)
 ITEM.LookAtPos = Vector(0, 0, 9)
 ITEM.FOV = 70
+ITEM.PickupSound = "physics/wood/wood_furniture_impact_soft"..math.random(1,3)..".wav"

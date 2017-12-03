@@ -1,0 +1,9 @@
+ITEM.ID = 21
+ITEM.Name = "A Rose"
+ITEM.Model = "models/sunabouzu/red_flower.mdl"
+ITEM.Skin = 0
+ITEM.PickupSound = "sunabouzu/generic_pickup.wav"
+ITEM.Description = "A pretty rose seems I can't really do much with this..."
+ITEM.CamPos = Vector(0, 128, 128)
+ITEM.LookAtPos = Vector(0, -1, 0)
+ITEM.FOV = 22

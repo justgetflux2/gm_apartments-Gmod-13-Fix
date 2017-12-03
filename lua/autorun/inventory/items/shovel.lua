@@ -1,5 +1,5 @@
-ITEM.ID = 18
-ITEM.Name = "Generator Crank"
+ITEM.ID = 20
+ITEM.Name = "Shovel"
 ITEM.Model = "models/props_mining/diesel_generator_crank.mdl"
 ITEM.Skin = 0
 ITEM.PickupSound = "sunabouzu/generic_pickup.wav"
