@@ -11,15 +11,10 @@ if string.sub(game.GetMap(),1,12) == "gm_apartment" then
 	hook.Add("PlayerSwitchFlashlight", "DisableFlashLight", function(ply, SwitchOn)
 				return false
 			end)
-	for _, v in pairs(file.Find("autorun/vgui/*.lua", "LUA" )) do include("vgui/" .. v) end
-
-	if SERVER then
-		include("inventory/cl_init.lua")
-		include("stories/sh_init.lua")
-	end
+	--for _, v in pairs(file.Find("autorun/vgui/*.lua", "LUA" )) do include("vgui/" .. v) end
 
 	if CLIENT then
-	include("inventory/cl_init.lua")
+	include("inventory/sh_init.lua")
 	include("vgui/item_display.lua")
 	include("vgui/story_time.lua")
 	include("vgui/typewriter_paper.lua")
