@@ -70,7 +70,7 @@ if string.sub(game.GetMap(),1,12) == "gm_apartment" then
 				for _, ply in ipairs(player.GetAll()) do
 					if IsValid(ply) && ply:Alive() then
 						GAMEMODE:SetPlayerSpeed( ply, 200, 200 )
-						ply:SetJumpPower(120)
+						ply:SetJumpPower(0)
 						speedfix = true
 					end
 				end
