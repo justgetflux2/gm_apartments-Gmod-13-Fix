@@ -54,10 +54,12 @@ function ENT:DoTransition(ply)
 	if !IsValid(ply) then return end
 
 	if SERVER then
-		ply:Freeze(true)
+		
 		umsg.Start("re_startloading", ply)
 			umsg.Short(self:EntIndex())
 		umsg.End()
+		ply:Freeze(true)
+		
 		timer.Simple(timeLoading,function() ply:Freeze(false) end)
 	else
 		// Play Sound
