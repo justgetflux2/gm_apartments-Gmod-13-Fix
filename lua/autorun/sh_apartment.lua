@@ -153,6 +153,9 @@ if string.sub(game.GetMap(),1,12) == "gm_apartment" then
 			return scale
 		end
 
+		//Scoreboard disabled in gamemode/cl_init.lua
+		
+
 		// mirror fix (taken from gmt)
 		local scrw, scrh = ScrW(), ScrH()
 		local rtw, rth = 0, 0

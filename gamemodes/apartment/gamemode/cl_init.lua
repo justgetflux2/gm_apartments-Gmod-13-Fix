@@ -1,2 +1,5 @@
-//Circumventing the obrigatory cl_init.lua and init.lua in gamemodes folder
-print("")
+//By overriding the scoreboard functions, we basically disable them
+function GM:ScoreboardShow()
+end
+function GM:ScoreboardHide()
+end
