@@ -54,9 +54,11 @@ function ENT:DoTransition(ply)
 	if !IsValid(ply) then return end
 
 	if SERVER then
+		ply:Freeze(true)
 		umsg.Start("re_startloading", ply)
 			umsg.Short(self:EntIndex())
 		umsg.End()
+		timer.Simple(timeLoading,function() ply:Freeze(false) end)
 	else
 		// Play Sound
 		if self:GetOpenDoorSound() != "" then
@@ -64,7 +66,7 @@ function ENT:DoTransition(ply)
 		end
 
 		self:SetTransition(true)
-		timer.Simple(2, function() self:SetTransition(false) end)
+		timer.Simple(timeLoading, function() self:SetTransition(false) end)
 		//
 	end
 end
