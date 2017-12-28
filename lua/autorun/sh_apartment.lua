@@ -155,6 +155,14 @@ if string.sub(game.GetMap(),1,12) == "gm_apartment" then
 
 		//Scoreboard disabled in gamemode/cl_init.lua
 		
+		//Overrides the player bind presses just to disable chatbox, yeah I like overthetop solutions
+		hook.Add("PlayerBindPress","overrideChatbind", function(ply,bind,pressed)
+			if (bind == "messagemode" or bind == "messagemode2") then
+				return true
+			else
+				return 
+			end
+		end)
 
 		// mirror fix (taken from gmt)
 		local scrw, scrh = ScrW(), ScrH()
