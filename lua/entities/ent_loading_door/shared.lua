@@ -68,7 +68,9 @@ function ENT:DoTransition(ply)
 		end
 
 		self:SetTransition(true)
-		timer.Simple(timeLoading, function() self:SetTransition(false) end)
+		timer.Simple(timeLoading, function() self:SetTransition(false)
+			surface.PlaySound(self:GetCloseDoorSound())
+		end)
 		//
 	end
 end
