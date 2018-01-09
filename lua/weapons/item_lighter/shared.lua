@@ -144,14 +144,14 @@ function SWEP:IsLit()
 end
 --this is a use animation system of some sort it isnt amazing.. (dont kill me magenta)
 function SWEP:UseAnimation()
-if self:IsLit() then
-self:SendWeaponAnim(ACT_VM_FIDGET)
-self:SetNextPrimaryFire(CurTime() + self:SequenceDuration())
-elseif not self:IsLit() then
-self:SendWeaponAnim(ACT_VM_PRIMARYATTACK_DEPLOYED)
-self:SetNextPrimaryFire(CurTime() + self:SequenceDuration())
---self:SetNext(CurTime() + self:SequenceDuration())
-end
+	if self:IsLit() then
+		self:SendWeaponAnim(ACT_VM_FIDGET)
+		self:SetNextPrimaryFire(CurTime() + self:SequenceDuration())
+	elseif not self:IsLit() then
+		self:SendWeaponAnim(ACT_VM_PRIMARYATTACK_DEPLOYED)
+		self:SetNextPrimaryFire(CurTime() + self:SequenceDuration())
+		--self:SetNext(CurTime() + self:SequenceDuration())
+	end
 end
 
 
@@ -242,20 +242,20 @@ else
 
 				local r, g, b = self:GetLightColor()
 
-				dlight.Pos = pos
+				dlight.Pos = LocalPlayer():GetShootPos()
 				dlight.r = r
 				dlight.g = g
 				dlight.b = b
 				dlight.Brightness = 2.3
 				dlight.Size = 128
-				//dlight.Decay = dlight.Size * 5
-				dlight.DieTime = CurTime() + .01
+				//dlight.Decay = 1000
+				dlight.DieTime = CurTime() + 1
 				dlight.Style = 1
 			end
 
 		end
 
-		self:NextThink(CurTime() + .01)
+		self:NextThink(CurTime() + 1)
 		return true
 	end
 
