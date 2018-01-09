@@ -1,6 +1,0 @@
-"gm_apartment"
-{
-	"base"		"base"
-	"title"		"gm_apartment"
-	"maps"		"gm_apartment"
-}
