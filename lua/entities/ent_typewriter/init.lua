@@ -46,7 +46,6 @@ function ENT:CheckPhrase(ply, value)
 		if string.lower(value) == "love me" then
 			print("TriggerOutput")
 			self:TriggerOutput("OnPhrase1", ply)
-			self:EmitSound("typewriter/correct.wav", 100, 100)
 			self:LeaveTW(ply)
 			return
 		end
