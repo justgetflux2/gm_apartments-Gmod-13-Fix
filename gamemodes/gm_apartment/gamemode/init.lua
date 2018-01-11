@@ -1,2 +1,3 @@
-//Circumventing the obrigatory cl_init.lua and init.lua in gamemodes folder
-print("dfsadsasadsadsadsasasa")
+function GM:CanPlayerSuicide( ply )
+	return EVIL_CHEAT_CONVAR:GetBool()
+end
