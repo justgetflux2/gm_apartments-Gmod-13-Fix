@@ -61,7 +61,7 @@ if string.sub(game.GetMap(),1,12) == "gm_apartment" then
 			end)
 
 		hook.Add("PlayerSpawn", "PickupNoticeFix", function(ply)
-			ply:SetSuppressPickupNotices(true)
+			ply:SetModel("models/player/group01/female_05.mdl")
 		end)
 
 		local speedfix = false
