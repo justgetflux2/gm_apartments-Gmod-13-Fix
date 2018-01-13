@@ -154,12 +154,37 @@ function ENT:Think()
 		doNewLine(self)
 	end
 end
+	TW = NULL 
+local function TWView( ply, pos, angles, fov )
+	local view = {}
+	
+	TWpos = TW:GetPos()
+	TWAngle = TW:GetAngles()
+	TWAngle = TWAngle + Angle(50,180,0)
+	view.origin = TW:GetPos() + Vector(0,0,64) + Vector(-30.78912323 * math.cos(TWAngle.y),-20.24755272* math.sin(TWAngle.y),-20)
+	view.angles = TWAngle
+	view.fov = fov
+	view.drawviewer = false
+
+	return view
+end
 
 /*If this is set to true, the typewriter interface will be enabled*/
 usermessage.Hook("eviltyper_use", function(um)
 		isBeingUsed = um:ReadBool()
 		print("eviltyper_use called")
 		print("args: bool = " .. tostring(isBeingUsed))
+		print(ENT)
+		LocalPlayer():SetDrawCrosshair(not isBeingUsed)
+		if(isBeingUsed) then
+			TW = LocalPlayer():GetEyeTrace().Entity
+			hook.Add( "CalcView", "TWView", TWView)
+			player.GetByID(1):DrawViewModel(false,0)
+		else
+			hook.Remove("CalcView","TWView")
+			player.GetByID(1):DrawViewModel(true,0)
+		end
+
 		if ValidPanel(m_PaperInterface) then
 			m_PaperInterface:SetVisible(isBeingUsed)
 			/*It seems like the typewriter keeps accepting input after

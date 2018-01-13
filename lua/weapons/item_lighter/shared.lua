@@ -188,11 +188,8 @@ else
 		if entLookedAt and entLookedAt:IsValid() then
 			isImportant = has_value(test,entLookedAt:GetClass())
 		end
-		
-		
-		LocalPlayer():SetDrawCrosshair(isImportant)
 
-		if LocalPlayer():ShouldDrawCrosshair() then
+		if LocalPlayer():ShouldDrawCrosshair() and isImportant then
 			local pos = LocalPlayer():EyePos()
 			local trace = util.TraceLine({
 					["start"] = pos,
