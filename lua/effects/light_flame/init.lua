@@ -1,4 +1,4 @@
-local PARTICLE_EMITTER = ParticleEmitter(Vector())
+
 
 function EFFECT:Init(data)
 	self.Attachment = data:GetAttachment()
@@ -26,17 +26,15 @@ function EFFECT:Think()
 		else
 			pos = self.LightEntity:GetPos()
 		end
-
-		part = PARTICLE_EMITTER:Add("effects/softglow", pos)
-
+		local PARTICLE_EMITTER = ParticleEmitter(Vector())
+		part = PARTICLE_EMITTER:Add("effects/softglow", pos + Vector(0,0,0.5))
 		local r, g, b = self.LightEntity:GetLightColor()
-
 		if part then
 			part:SetVelocity(Vector(0, 0, math.sin(math.random()) * 7.63))
 			part:SetDieTime(1)
 			part:SetStartAlpha(255)
 			part:SetEndAlpha(0)
-			part:SetStartSize(0.71)
+			part:SetStartSize(1)
 			part:SetEndSize(0.0)
 			part:SetStartLength(0)
 			part:SetEndLength(0)
@@ -45,8 +43,9 @@ function EFFECT:Think()
 			part:SetColor(r, g, b, 255)
 			part:SetGravity(Vector(0, 0, 60.59))
 		end
+		PARTICLE_EMITTER:Finish()
 	end
-
+	
 	return self.LightEntity:IsLit()
 end
 
